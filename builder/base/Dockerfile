@@ -16,4 +16,44 @@ ENV LOGNAME ubuntu
 ENV TERM xterm
 
 ADD scripts /var/cache/drone/scripts
-RUN cd /var/cache/drone/scripts && sudo chmod +x *.sh && ./all.sh && sudo rm -rf /var/cache/drone/scripts
+RUN cd /var/cache/drone/scripts && sudo chmod +x *.sh
+WORKDIR /var/cache/drone/scripts
+RUN sudo apt-get -qq update && \
+    sudo apt-get -y install git git-core subversion mercurial bzr fossil xvfb socat
+
+RUN ./gcc.sh && ./build-essential.sh && ./scons.sh
+RUN ./libcurl.sh && \
+    ./libffi.sh && \
+    ./libgdbm.sh && \
+    ./libmagick.sh && \
+    ./libmemcache.sh && \
+    ./libmysql.sh &&\
+    ./libncurses.sh &&\
+    ./libossp-uuid.sh &&\
+    ./libpq.sh &&\
+    ./libqt4.sh &&\
+    ./libreadline.sh &&\
+    ./libsqlite.sh  &&\
+    ./libssl.sh &&\
+    ./libxml.sh &&\
+    ./libyaml.sh &&\
+    ./libzmq.sh &&\
+    ./zlib.sh
+
+RUN ./mysql-cli.sh &&\
+    ./postgres-client.sh
+
+RUN ./chromium.sh &&\
+    ./firefox.sh &&\
+    ./chrome.sh &&\
+    ./phantomjs.sh 
+
+# install base languages
+RUN ./openjdk.sh &&\
+    ./python.sh &&\
+    ./nodejs.sh &&\
+    ./ruby.sh &&\
+    ./golang.sh
+
+
+RUN sudo rm -rf /var/cache/drone/scripts

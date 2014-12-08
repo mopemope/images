@@ -10,9 +10,10 @@ sudo apt-get -y install ant ant-contrib ivy maven
 sudo apt-get -y install default-jdk
 
 # Download gradle 1.3
-wget http://services.gradle.org/distributions/gradle-1.9-bin.zip --quiet
-unzip -q gradle-1.9-bin.zip 
-rm gradle-1.9-bin.zip 
-sudo mv gradle-1.9 /usr/local
-sudo chown -R ubuntu:ubuntu /usr/local/gradle-1.9
-chmod +x /usr/local/gradle-1.9/bin/gradle
+wget -O /tmp/gradle-2.2.1-bin.zip https://services.gradle.org/distributions/gradle-2.2.1-bin.zip
+cd /tmp
+unzip gradle-2.2.1-bin.zip 
+rm gradle-2.2.1-bin.zip 
+sudo mv gradle-2.2.1 /usr/local
+sudo chown -R ubuntu:ubuntu /usr/local/gradle-2.2.1
+chmod +x /usr/local/gradle-2.2.1/bin/gradle
