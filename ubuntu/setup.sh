@@ -3,8 +3,8 @@
 # imports into Docker. This will provide an image that
 # is nearly identical to an Amazon (or Rackspace) Ubuntu AMI.
 
-DOCKER_USER=bradrydzewski
-UBUNTU_RELEASE=precise
+DOCKER_USER=mopemope
+UBUNTU_RELEASE=trusty
 CONTAINER_NAME=ubuntu
 CONTAINER_DIR=/var/lib/lxc/$CONTAINER_NAME/rootfs
 
@@ -16,7 +16,7 @@ docker rmi $DOCKER_USER/$CONTAINER_NAME
 set -e
 
 # create the default LXC container (takes ~10 minutes)
-lxc-create -n $CONTAINER_NAME -t ubuntu-cloud -- -r $UBUNTU_RELEASE
+lxc-create -n $CONTAINER_NAME -t ubuntu -- -r $UBUNTU_RELEASE
 
 # upstart workaround for docker
 # see https://github.com/dotcloud/docker/issues/1024
