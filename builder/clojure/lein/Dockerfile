@@ -1,8 +1,18 @@
-FROM bradrydzewski/base
+FROM mopemope/java:8
 
-WORKDIR /home/ubuntu
-USER ubuntu
+WORKDIR /root
+USER root
+ENV HOME /root
+ENV LEIN_ROOT /root/.lein
 
 RUN wget https://raw.github.com/technomancy/leiningen/stable/bin/lein && \
-    sudo install -t /usr/local/bin lein                               && \
+    install -t /usr/local/bin lein                               && \
     rm lein
+
+
+RUN cd /tmp && \
+    lein new luminus hello +postgres +site +cljs +http-kit && \
+    cd hello && lein deps && lein compile && lein cljsbuild once && lein test && lein uberjar && \
+    cd ../ && rm -rf hello
+
+
