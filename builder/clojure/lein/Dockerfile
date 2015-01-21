@@ -10,9 +10,4 @@ RUN wget https://raw.github.com/technomancy/leiningen/stable/bin/lein && \
     rm lein
 
 
-RUN cd /tmp && \
-    lein new luminus hello +postgres +site +cljs +http-kit && \
-    cd hello && lein deps && lein compile && lein cljsbuild once && lein test && lein uberjar && \
-    cd ../ && rm -rf hello
-
 
