@@ -21,7 +21,7 @@ RUN rm android-sdk_r24.1.2-linux.tgz
 
 # Install Android NDK
 RUN wget https://dl.google.com/android/ndk/android-ndk-r10d-linux-x86_64.bin
-RUN chmod +x android-ndk-r10d-linux-x86_64.bin && ./android-ndk-r10d-linux-x86_64.bin
+RUN chmod +x ./android-ndk-r10d-linux-x86_64.bin && ./android-ndk-r10d-linux-x86_64.bin
 RUN mv android-ndk-r10d /usr/local/android-ndk
 RUN rm android-ndk-r10d-linux-x86_64.bin
 
