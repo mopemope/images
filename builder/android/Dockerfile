@@ -19,10 +19,6 @@ RUN tar -xvzf android-sdk_r24.1.2-linux.tgz
 RUN mv android-sdk-linux /usr/local/android-sdk
 RUN rm android-sdk_r24.1.2-linux.tgz
 
-# Install Android tools
-RUN echo y | /usr/local/android-sdk/tools/android update sdk --filter platform,tool,platform-tool,extra,addon-google_apis-google-8,addon-google_apis-google-10,addon-google_apis-google-15,addon-google_apis-google-16,addon-google_apis-google-17,addon-google_apis-google-18,addon-google_apis-google-19,addon-google_apis-google-21,addon-google_apis-google-22,addon-google_gdk-google-19,build-tools-22.0.1 --no-ui -a
-RUN echo y | /usr/local/android-sdk/tools/android update sdk --filter addon-google_gdk-google-19,build-tools-22.0.1 --no-ui -a
-
 # Install Android NDK
 RUN wget https://dl.google.com/android/ndk/android-ndk-r10d-linux-x86_64.bin
 RUN chmod +x android-ndk-r10d-linux-x86_64.bin && ./android-ndk-r10d-linux-x86_64.bin
@@ -53,8 +49,12 @@ ENV PATH $PATH:$ANDROID_NDK_HOME
 ENV PATH $PATH:$GRADLE_HOME/bin
 ENV PATH $PATH:$M2_HOME/bin
 
+# Install Android tools
+RUN echo y | /usr/local/android-sdk/tools/android update sdk --filter platform,tool,platform-tool,extra,addon-google_apis-google-8,addon-google_apis-google-10,addon-google_apis-google-15,addon-google_apis-google-16,addon-google_apis-google-17,addon-google_apis-google-18,addon-google_apis-google-19,addon-google_apis-google-21,addon-google_apis-google-22,addon-google_gdk-google-19,build-tools-22.0.1 --no-ui -a
+RUN echo y | /usr/local/android-sdk/tools/android update sdk --filter addon-google_gdk-google-19,build-tools-22.0.1 -u -a
+
 RUN git clone https://github.com/simpligility/maven-android-sdk-deployer.git
-RUN cd maven-android-sdk-deployer && mvn install
+RUN cd maven-android-sdk-deployer && mvn install -X
 
 # Export JAVA_HOME variable
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
