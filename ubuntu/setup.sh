@@ -5,7 +5,7 @@
 
 DOCKER_USER=mopemope
 UBUNTU_RELEASE=trusty
-CONTAINER_NAME=ubuntu
+CONTAINER_NAME=drone
 CONTAINER_DIR=/var/lib/lxc/$CONTAINER_NAME/rootfs
 
 # make sure container and image don't already exist
@@ -42,8 +42,8 @@ chroot $CONTAINER_DIR ln -s /bin/true /sbin/initctl
 #cat rootfs/etc/resolv.conf > $CONTAINER_DIR/etc/resolv.conf
 
 # install essential command binaries (scm, xserver)
-#chroot $CONTAINER_DIR apt-get update
-#chroot $CONTAINER_DIR apt-get -y install git git-core subversion mercurial bzr fossil xvfb socat
+chroot $CONTAINER_DIR apt-get -y update
+chroot $CONTAINER_DIR apt-get -y --no-install-recommends install git git-core subversion mercurial bzr fossil xvfb socat vim build-essential
 
 # remove resolv.conf and restore backup
 #chroot $CONTAINER_DIR rm /etc/resolv.conf
