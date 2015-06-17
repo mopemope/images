@@ -3,15 +3,19 @@ WORKDIR /home/ubuntu
 USER ubuntu
 ADD golang.sh /etc/drone.d/
 
-RUN sudo apt-get -y install zip tar curl wget socat mercurial openssh-client mercurial gcc-mingw-w64 gcc-mingw-w64-i686 gcc-mingw-w64-x86-64
+RUN sudo apt-get update &&\
+    sudo apt-get -y install zip tar curl wget socat mercurial openssh-client mercurial gcc-mingw-w64 gcc-mingw-w64-i686 gcc-mingw-w64-x86-64
 RUN git clone git://github.com/creationix/nvm.git .nvm&&\
     . /home/ubuntu/.nvm/nvm.sh &&\
     NVM_DIR=/home/ubuntu/.nvm nvm install v0.10.35 &&\
     nvm use v0.10.35 &&\
     sudo /home/ubuntu/.nvm/v0.10.35/bin/npm install -g bower 
 
-RUN hg clone -u go1.4 https://code.google.com/p/go 
-
+#RUN hg clone -u go1.4 https://code.google.com/p/go 
+RUN git clone https://go.googlesource.com/go && \
+    cd go && \
+    git checkout go1.4.2
+    
 ENV GOROOT /home/ubuntu/go
 ENV GOPATH /var/cache/drone
 ENV PATH $PATH:$GOROOT/bin:$GOPATH/bin:
