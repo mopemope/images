@@ -1,5 +1,5 @@
 FROM golang:1.5
-RUN go get -u github.com/constabulary/gb/...
+ADD gb /go/bin/
 RUN go get -u github.com/mattes/migrate
 RUN apt-get update
 RUN apt-get -y install git zip tar curl wget socat mercurial openssh-client mercurial postgresql-common postgresql-client-9.4
