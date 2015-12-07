@@ -31,6 +31,7 @@ RUN go get github.com/GeertJohan/go.rice/rice
 RUN go get bitbucket.org/liamstask/goose/cmd/goose
 RUN go get golang.org/x/tools/cmd/vet
 RUN go get golang.org/x/tools/cmd/cover
+RUN go get -u github.com/mattes/migrate
 
 RUN GOOS=linux GOARCH=386 ./make.bash --no-clean
 RUN GOOS=darwin GOARCH=amd64 ./make.bash --no-clean
@@ -40,12 +41,14 @@ RUN CGO_ENABLED=1 GOOS=windows GOARCH=386 CC_FOR_TARGET="i686-w64-mingw32-gcc -f
 RUN CGO_ENABLED=1 GOOS=windows GOARCH=amd64 CC_FOR_TARGET="x86_64-w64-mingw32-gcc -fno-stack-protector -D_FORTIFY_SOURCE=0 -lssp" ./make.bash --no-clean
 RUN ./make.bash --no-clean
 RUN go get -u github.com/tools/godep
-RUN go get -u  github.com/GeertJohan/go.rice
-RUN go get -u  github.com/GeertJohan/go.rice/rice
-RUN go get -u  bitbucket.org/liamstask/goose/cmd/goose
-RUN go get -u  golang.org/x/tools/cmd/vet
-RUN go get -u  golang.org/x/tools/cmd/cover
+RUN go get -u github.com/GeertJohan/go.rice
+RUN go get -u github.com/GeertJohan/go.rice/rice
+RUN go get -u bitbucket.org/liamstask/goose/cmd/goose
+RUN go get -u golang.org/x/tools/cmd/vet
+RUN go get -u golang.org/x/tools/cmd/cover
 RUN go get -u github.com/mattes/migrate
+ADD gb /var/cache/drone/bin/
+ADD gb-vendor /var/cache/drone/bin/
 
 WORKDIR /home/ubuntu
 

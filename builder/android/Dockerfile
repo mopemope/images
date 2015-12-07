@@ -14,10 +14,10 @@ RUN apt-get update
 RUN apt-get -y install oracle-java7-installer oracle-java8-installer
 
 # Install android sdk
-RUN wget http://dl.google.com/android/android-sdk_r24.1.2-linux.tgz
-RUN tar -xvzf android-sdk_r24.1.2-linux.tgz
+RUN wget http://dl.google.com/android/android-sdk_r24.2-linux.tgz
+RUN tar -xvzf android-sdk_r24.2-linux.tgz
 RUN mv android-sdk-linux /usr/local/android-sdk
-RUN rm android-sdk_r24.1.2-linux.tgz
+RUN rm android-sdk_r24.2-linux.tgz
 
 # Install Android NDK
 RUN wget https://dl.google.com/android/ndk/android-ndk-r10d-linux-x86_64.bin
@@ -26,15 +26,15 @@ RUN mv android-ndk-r10d /usr/local/android-ndk
 RUN rm android-ndk-r10d-linux-x86_64.bin
 
 # Install Gradle
-RUN wget https://services.gradle.org/distributions/gradle-2.3-all.zip
-RUN unzip gradle-2.3-all.zip
-RUN mv gradle-2.3 /usr/local/gradle
-RUN rm gradle-2.3-all.zip
+RUN wget https://services.gradle.org/distributions/gradle-2.4-all.zip
+RUN unzip gradle-2.4-all.zip
+RUN mv gradle-2.4 /usr/local/gradle
+RUN rm gradle-2.4-all.zip
 
-RUN wget http://ftp.meisei-u.ac.jp/mirror/apache/dist/maven/maven-3/3.3.1/binaries/apache-maven-3.3.1-bin.zip
-RUN unzip apache-maven-3.3.1-bin.zip
-RUN mv apache-maven-3.3.1 /usr/local/maven
-RUN rm apache-maven-3.3.1-bin.zip
+RUN wget http://ftp.meisei-u.ac.jp/mirror/apache/dist/maven/maven-3/3.3.3/binaries/apache-maven-3.3.3-bin.zip
+RUN unzip apache-maven-3.3.3-bin.zip
+RUN mv apache-maven-3.3.3 /usr/local/maven
+RUN rm apache-maven-3.3.3-bin.zip
 
 
 # Environment variables
