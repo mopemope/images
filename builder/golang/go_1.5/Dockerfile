@@ -14,5 +14,5 @@ RUN git clone git://github.com/creationix/nvm.git .nvm&&\
 RUN GOOS=darwin GOARCH=amd64 go install std
 RUN GOOS=windows GOARCH=amd64 go install std
 RUN GOOS=linux GOARCH=amd64 go install std
-
+RUN cp /usr/bin/base64 /bin/ & cp /usr/bin/base64 /usr/local/bin/ 
 
