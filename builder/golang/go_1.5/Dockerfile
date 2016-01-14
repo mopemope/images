@@ -1,4 +1,4 @@
-FROM golang:1.5.2
+FROM golang:1.5.3
 
 RUN go get -u github.com/constabulary/gb/...
 RUN go get -u github.com/mattes/migrate
